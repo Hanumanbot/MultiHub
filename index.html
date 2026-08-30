@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Multi</title>
+    <link rel="icon" type="image/png" href="img/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-transition" id="page-transition">
+        <div class="spinner"></div>
+    </div>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <span class="use">use.</span><br>
+                <span class="multi">multi</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#solucoes">Soluções <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+                <a href="login.html" class="btn-outline"> Entrar </a>
+                
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Venda Mais, Sem Mensalidade, em <span class="highlight">Minutos.</span></h1>
+                    <p>iTap, Pix, Boleto e Link de Pagamento.<br>Sua Solução Completa em um Único App.</p>
+                    <a href="cadastro.html" class="btn-primary">Cadastrar Gratuitamente</a>
+                </div>
+                <div class="hero-image">
+                    <img src="Gemini_Generated_Image_1hw7r21hw7r21hw7.jpg" alt="Aplicativo Use Multi">
+                </div>
+            </div>
+        </section>
+        <section id="solucoes" class="solutions">
+            <div class="container">
+                <h2>Soluções de Pagamento</h2>
+                <div class="grid-solutions">
+                    <div class="card">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <h3>iTap</h3>
+                        <p>Transforme seu Android em máquina. Receba débito e crédito diretamente.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-brands fa-pix"></i>
+                        <h3>Pix</h3>
+                        <p>Pague apenas R$ 0,99, por transação recebida. Sua Solução Completa em um Único App.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-barcode"></i>
+                        <h3>Boleto</h3>
+                        <p>Pague apenas por boleto recebido, tenha o depósito em sua conta no próximo dia útil.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-link"></i>
+                        <h3>Link</h3>
+                        <p>Venda online em até 21x, total segurança! Envie link WhatsApp, e-mail ou redes sociais para seus clientes.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-calculator"></i>
+                        <h3>Simulador</h3>
+                        <p>Saiba quais as taxas serão descontadas antes da venda.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <h3>Transf</h3>
+                        <p>Saiba quais as taxas serão de acordo com método de pagamento utilizado.</p>
+                    </div>
+                    <div class="card text-only">
+                        <h3>E Muito +</h3>
+                        <p>Split de pagamento, você pode dividir o valor de uma venda e/ou serviço com seu time de colaboradores.</p>
+                    </div>
+                    <div class="card text-only">
+                        <h3>Não</h3>
+                        <p>Não cobramos mensalidade para usar nosso APP, cadastre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="diferenciais" class="diferenciais">
+            <div class="container grid-diferenciais">
+                <div class="dif-brand">
+                    <h3>Diferenciais</h3>
+                    <div class="logo">
+                        <span class="use">use.</span><br>
+                        <span class="multi">multi</span>
+                    </div>
+                    <p class="copyright">&copy; Copyright Info en. Ltd.</p>
+                </div>
+                <div class="dif-item">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <h4>Split de pagamento,</h4>
+                    <p>Você pode dividir o valor de uma venda ou serviço com colaboradores.</p>
+                </div>
+                <div class="dif-item">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <h4>Cobrança Recorrente,</h4>
+                    <p>serviços de assinatura que cobram automaticamente todo mês.</p>
+                </div>
+                <div class="dif-item">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <h4>Velocidade de cadastro</h4>
+                    <p>do zero a vender em minutos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a91806fbde3d5bf5080247e" defer></script>
+    <script>
+        window.addEventListener('load', () => {
+            const transition = document.getElementById('page-transition');
+            if (transition) transition.classList.add('loaded');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const target = this.getAttribute('href');
+                if (target && target.endsWith('.html') && this.target !== '_blank') {
+                    e.preventDefault();
+                    const transition = document.getElementById('page-transition');
+                    transition.classList.remove('loaded');
+                    setTimeout(() => window.location.href = target, 400);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

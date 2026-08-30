@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Use Multi</title>
+    <link rel="icon" type="image/png" href="img/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Específico para o Cadastro */
+        .register-wrapper {
+            width: 100%;
+            max-width: 850px;
+            padding: 40px 20px;
+            margin: 0 auto;
+        }
+        .register-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 51, 160, 0.15);
+            border: 2px solid var(--brand-blue);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--brand-blue);
+            margin: 35px 0 20px 0;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-grid.full {
+            grid-template-columns: 1fr;
+        }
+        .input-group.radio-group {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 10px 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #CBD5E1;
+            margin-bottom: 20px;
+        }
+        .input-group.radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 10px;
+        }
+        .input-group.radio-group input[type="radio"] {
+            accent-color: var(--brand-blue);
+            width: 18px;
+            height: 18px;
+        }
+        .custom-select {
+            padding: 14px 16px;
+            border: 1.5px solid #CBD5E1;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+            background: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .custom-select:focus {
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
+        }
+        .file-upload {
+            border: 2px dashed #CBD5E1;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .file-upload:hover {
+            border-color: var(--brand-blue);
+            background-color: #f1f5f9;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        .file-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .file-upload span {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .terms-checkbox {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #CBD5E1;
+            line-height: 1.5;
+        }
+        .terms-checkbox input {
+            margin-top: 3px;
+            accent-color: var(--brand-blue);
+            width: 16px;
+            height: 16px;
+        }
+        .password-hint {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: -5px;
+        }
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .register-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body class="login-body">
+    <div class="page-transition" id="page-transition">
+        <div class="spinner"></div>
+    </div>
+    
+    <main class="register-wrapper">
+        <div class="register-card">
+            <div class="login-logo-space">
+                <div class="login-logo-space">
+                    <a href="index.html">
+                    <img src="img/logo.jpg" alt="Logo Use Multi" class="logo-img">
+                    </a>
+             </div>
+             </div>
+            
+            <h2 class="login-title">Crie sua conta</h2>
+            <p style="text-align: center; margin-bottom: 35px; font-size: 15px; font-weight: 500; color: #475569;">
+                Preencha os dados abaixo para ativar sua conta de pagamentos e começar a vender em minutos.
+            </p>
+            
+            <form id="form-cadastro" action="#" class="login-form">
+                
+                <div class="input-group radio-group">
+                    <label><input type="radio" name="tipo_pessoa" value="pf" checked onchange="togglePessoa()"> Pessoa Física</label>
+                    <label><input type="radio" name="tipo_pessoa" value="pj" onchange="togglePessoa()"> Pessoa Jurídica</label>
+                </div>
+
+                <!-- DADOS PRINCIPAIS -->
+                <h3 class="section-title">Dados Principais</h3>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label id="label-nome" for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Igual ao documento" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label id="label-doc" for="documento">CPF</label>
+                        <input type="text" id="documento" name="documento" placeholder="000.000.000-00" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label id="label-data" for="data_nasc">Data de Nascimento</label>
+                        <input type="date" id="data_nasc" name="data_nasc" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="celular">Celular (WhatsApp)</label>
+                        <input type="tel" id="celular" name="celular" placeholder="(00) 00000-0000" required>
+                    </div>
+                    
+                    <div class="input-group full" id="div_mae">
+                        <label for="nome_mae">Nome da Mãe (Exigência do Bacen para KYC)</label>
+                        <input type="text" id="nome_mae" name="nome_mae" placeholder="Nome completo da mãe" required>
+                    </div>
+
+                    <div class="input-group full" id="div_fantasia" style="display: none;">
+                        <label for="nome_fantasia">Nome Fantasia (Opcional)</label>
+                        <input type="text" id="nome_fantasia" name="nome_fantasia" placeholder="Nome de fachada da sua empresa">
+                    </div>
+                </div>
+
+                <!-- ENDEREÇO -->
+                <h3 class="section-title">Endereço Comercial / Residencial</h3>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" placeholder="00000-000" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="estado">Estado (UF)</label>
+                        <select id="estado" name="estado" class="custom-select" required>
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES" selected>Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group full" style="grid-column: 1 / -1;">
+                        <label for="logradouro">Logradouro (Rua, Av.)</label>
+                        <input type="text" id="logradouro" name="logradouro" placeholder="Nome da rua" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero" placeholder="Ex: 123" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="complemento">Complemento (Opcional)</label>
+                        <input type="text" id="complemento" name="complemento" placeholder="Apto, Sala, Casa 2">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Seu bairro" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" required>
+                    </div>
+                </div>
+
+                <!-- DADOS BANCÁRIOS -->
+                <h3 class="section-title">Dados Bancários (Para repasse das vendas)</h3>
+                <p style="font-size: 13px; margin-bottom: 20px; color: #64748b; font-weight: 500;">A conta deve estar no mesmo CPF/CNPJ informado acima.</p>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="banco">Código do Banco</label>
+                        <input type="text" id="banco" name="banco" placeholder="Ex: 341 (Itaú), 033 (Santander)" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="tipo_conta_banco">Tipo de Conta</label>
+                        <select id="tipo_conta_banco" name="tipo_conta_banco" class="custom-select" required>
+                            <option value="corrente">Conta Corrente</option>
+                            <option value="poupanca">Conta Poupança</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="agencia">Agência (Sem dígito)</label>
+                        <input type="text" id="agencia" name="agencia" placeholder="0000" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="conta">Número da Conta (Com dígito)</label>
+                        <input type="text" id="conta" name="conta" placeholder="00000-0" required>
+                    </div>
+                </div>
+
+                <!-- DOCUMENTOS KYC -->
+                <h3 class="section-title">Documentos KYC (Know Your Customer)</h3>
+                <p style="font-size: 13px; margin-bottom: 20px; color: #64748b; font-weight: 500;">Processo obrigatório de segurança. Envie fotos legíveis e sem reflexos.</p>
+                <div class="form-grid">
+                    <label class="file-upload">
+                        <input type="file" id="doc_frente" name="doc_frente" accept="image/jpeg, image/png, application/pdf" required>
+                        <span class="file-icon">📄</span>
+                        <span>RG ou CNH (Frente)</span>
+                    </label>
+                    
+                    <label class="file-upload">
+                        <input type="file" id="doc_verso" name="doc_verso" accept="image/jpeg, image/png, application/pdf" required>
+                        <span class="file-icon">📄</span>
+                        <span>RG ou CNH (Verso)</span>
+                    </label>
+                    
+                    <label class="file-upload full" style="grid-column: 1 / -1;">
+                        <input type="file" id="doc_selfie" name="doc_selfie" accept="image/jpeg, image/png" capture="user" required>
+                        <span class="file-icon">🤳</span>
+                        <span>Selfie segurando o documento ao lado do rosto</span>
+                    </label>
+                </div>
+
+                <!-- DADOS DE ACESSO -->
+                <h3 class="section-title">Dados de Acesso</h3>
+                <div class="form-grid">
+                    <div class="input-group full" style="grid-column: 1 / -1;">
+                        <label for="email">E-mail de Login</label>
+                        <input type="email" id="email" name="email" placeholder="contato@empresa.com.br" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Crie uma senha forte" required>
+                        <span class="password-hint">Mínimo de 8 caracteres, contendo números e letras.</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="confirma_senha">Confirme a Senha</label>
+                        <input type="password" id="confirma_senha" name="confirma_senha" placeholder="Repita a senha" required>
+                    </div>
+                </div>
+
+                <!-- TERMOS -->
+                <div style="margin-top: 35px;">
+                    <label class="terms-checkbox">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <span>Declaro que as informações inseridas são verdadeiras e estou de acordo com os <b>Termos de Uso</b> e <b>Políticas de Privacidade</b>, bem como as diretrizes operacionais de subcredenciamento (Zoop).</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block" style="margin-top: 25px; font-size: 18px; padding: 18px; border-radius: 12px;">
+                    Concluir Cadastro
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Já possui conta? <a href="login.html">Faça login aqui</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Transição de página
+        window.addEventListener('load', () => {
+            const transition = document.getElementById('page-transition');
+            if (transition) transition.classList.add('loaded');
+        });
+
+        // Toggle Dinâmico PF / PJ
+        function togglePessoa() {
+            const isPJ = document.querySelector('input[name="tipo_pessoa"]:checked').value === 'pj';
+            
+            document.getElementById('label-nome').textContent = isPJ ? 'Razão Social' : 'Nome Completo';
+            document.getElementById('nome').placeholder = isPJ ? 'Razão social da empresa' : 'Igual ao documento';
+            
+            document.getElementById('label-doc').textContent = isPJ ? 'CNPJ' : 'CPF';
+            document.getElementById('documento').placeholder = isPJ ? '00.000.000/0000-00' : '000.000.000-00';
+            
+            document.getElementById('label-data').textContent = isPJ ? 'Data de Abertura' : 'Data de Nascimento';
+            
+            const divMae = document.getElementById('div_mae');
+            const divFantasia = document.getElementById('div_fantasia');
+            
+            if (isPJ) {
+                divMae.style.display = 'none';
+                document.getElementById('nome_mae').removeAttribute('required');
+                
+                divFantasia.style.display = 'flex';
+            } else {
+                divMae.style.display = 'flex';
+                document.getElementById('nome_mae').setAttribute('required', 'true');
+                
+                divFantasia.style.display = 'none';
+            }
+        }
+
+        // Alterar ícone e texto ao selecionar arquivo
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const spanText = this.parentElement.querySelector('span:not(.file-icon)');
+                    spanText.textContent = "Arquivo selecionado: " + this.files[0].name;
+                    this.parentElement.style.borderColor = "var(--brand-blue)";
+                    this.parentElement.style.backgroundColor = "#e0e7ff";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
